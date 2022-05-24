@@ -5,8 +5,11 @@ on:
     branches: [main]
     
 jobs:
-  build:
-    # Name the Job
-    name: cascading-auto-merge
-    # Set the agent to run on
+  test:
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm install @octokit/action
+      - uses: ./
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
