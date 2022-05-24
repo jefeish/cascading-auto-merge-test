@@ -1,7 +1,13 @@
-name: 'workflow'
 on:
   push:
-    branches:
-      - main
-
+    branches-ignore: [main]
+    # Remove the line above to run when pushing to main
+  pull_request:
+    branches: [main]
+    
 jobs:
+  build:
+    # Name the Job
+    name: cascading-auto-merge
+    # Set the agent to run on
+    runs-on: ubuntu-latest
