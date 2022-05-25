@@ -1,8 +1,8 @@
 name: Cascading Auto-Merge
 
 on:
-  pull_request:
-    branches: [main]
+  check_suite:
+    types: [completed]
     
 jobs:
   test:
