@@ -2,7 +2,7 @@ name: Cascading Auto-Merge
 
 on:
   check_suite:
-    types: [completed]
+    types: [requested, completed]
     
 jobs:
   Explore-GitHub-Actions:
