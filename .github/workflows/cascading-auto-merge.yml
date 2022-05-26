@@ -3,6 +3,8 @@ name: Cascading Auto-Merge
 on:
   check_suite:
     types: [requested, completed]
+  check_run:
+    types: [rerequested, completed]
     
 jobs:
   Cascading-Action:
