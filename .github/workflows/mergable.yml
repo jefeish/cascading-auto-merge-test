@@ -1,0 +1,12 @@
+name: mergable and merge_state
+
+on:
+  pull_request:
+
+
+jobs:
+  approved:
+    if: ${{ github.event.mergeable_state == 'clean' && github.event.mergeable == true }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "This PR is ready for merging"
