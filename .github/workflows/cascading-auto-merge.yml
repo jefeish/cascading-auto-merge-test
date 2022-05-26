@@ -5,7 +5,7 @@ on:
     types: [requested, completed]
     
 jobs:
-  Explore-GitHub-Actions:
+  Cascading-Action:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
