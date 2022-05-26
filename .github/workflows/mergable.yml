@@ -6,7 +6,7 @@ on:
 
 jobs:
   approved:
-    if: ${{ github.event.mergeable_state == 'clean' && github.event.mergeable == true }}
+#     if: ${{ github.event.mergeable_state == 'clean' && github.event.mergeable == true }}
     runs-on: ubuntu-latest
     steps:
-      - run: echo "This PR is ready for merging"
+      - run: echo "This PR is ready for merging ${{github.event}} " 
