@@ -2,7 +2,7 @@ name: Cascading Auto-Merge
 
 on:
   check_run:
-    types: [completed]
+    types: [rerequested, completed]
     
 jobs:
   Cascading-Action:
