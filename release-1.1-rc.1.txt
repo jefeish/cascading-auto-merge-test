@@ -1,0 +1,4 @@
+This file belongs to branch: release/1.1-rc.1
+Created at: Wed Jun 10 11:57:31 EDT 2026
+Purpose: Testing cascading auto-merge functionality
+--- test
