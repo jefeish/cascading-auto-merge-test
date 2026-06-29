@@ -1,0 +1,5 @@
+
+[![GitHub Super-Linter](https://github.com/jefeish/cascading-auto-merge-test/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
+
+# cascading-auto-merge-test
+Repo to test GitHub Action
