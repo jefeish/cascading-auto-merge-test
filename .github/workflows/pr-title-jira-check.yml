@@ -1,0 +1,23 @@
+name: PR Title JIRA Check
+
+on:
+  pull_request:
+    types:
+      - opened
+
+jobs:
+  validate-pr-title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate PR title contains JIRA key
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          echo "PR title: $PR_TITLE"
+          if [[ "$PR_TITLE" =~ JIRA-[0-9]+ ]]; then
+            echo "PR title contains a valid JIRA pattern."
+            exit 0
+          fi
+
+          echo "PR title must include a JIRA key in the form JIRA-1234."
+          exit 1
