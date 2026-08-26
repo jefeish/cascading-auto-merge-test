@@ -1,0 +1,71 @@
+name: Report Pull Request Event
+
+on:
+  workflow_dispatch: 
+  # pull_request:
+  #   types:
+  #     - closed
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  report:
+    name: Report PR Closure Details
+    runs-on: ubuntu-latest
+    steps:
+      - name: Report PR Event Details
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "🔔 Pull Request Closed Event Report"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo ""
+          echo "📋 PR Details:"
+          echo "  Number:       #${{ github.event.pull_request.number }}"
+          echo "  Title:        ${{ github.event.pull_request.title }}"
+          echo "  State:        ${{ github.event.pull_request.state }}"
+          echo "  Merged:       ${{ github.event.pull_request.merged }}"
+          echo ""
+          echo "🌿 Branch Information:"
+          echo "  Source:       ${{ github.event.pull_request.head.ref }}"
+          echo "  Target:       ${{ github.event.pull_request.base.ref }}"
+          echo "  Base SHA:     ${{ github.event.pull_request.base.sha }}"
+          echo "  Head SHA:     ${{ github.event.pull_request.head.sha }}"
+          echo ""
+          echo "👤 User Information:"
+          echo "  Author:       ${{ github.event.pull_request.user.login }}"
+          echo "  Merged By:    ${{ github.event.pull_request.merged_by.login }}"
+          echo ""
+          echo "🔗 Links:"
+          echo "  PR URL:       ${{ github.event.pull_request.html_url }}"
+          echo "  Repository:   ${{ github.repository }}"
+          echo ""
+          echo "⏰ Timestamps:"
+          echo "  Created:      ${{ github.event.pull_request.created_at }}"
+          echo "  Updated:      ${{ github.event.pull_request.updated_at }}"
+          echo "  Closed:       ${{ github.event.pull_request.closed_at }}"
+          echo "  Merged:       ${{ github.event.pull_request.merged_at }}"
+          echo ""
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          
+      - name: Check for Cascading Merge Trigger
+        if: github.event.pull_request.merged == true
+        run: |
+          echo ""
+          echo "✅ PR was MERGED (not just closed)"
+          if [[ "${{ github.event.pull_request.base.ref }}" == release/* ]]; then
+            echo "🚀 Target branch is a release branch: ${{ github.event.pull_request.base.ref }}"
+            echo "   → This should trigger the cascading merge workflow!"
+          else
+            echo "ℹ️  Target branch is NOT a release branch: ${{ github.event.pull_request.base.ref }}"
+            echo "   → Cascading merge workflow will NOT trigger"
+          fi
+          
+      - name: Check for Closed Without Merge
+        if: github.event.pull_request.merged == false
+        run: |
+          echo ""
+          echo "⚠️  PR was CLOSED without merging"
+          echo "   → Cascading merge workflow will NOT trigger"
+          echo "   → No changes will be propagated downstream"
