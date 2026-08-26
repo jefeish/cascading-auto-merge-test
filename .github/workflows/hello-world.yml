@@ -1,0 +1,68 @@
+name: Hello World
+
+on:
+  workflow_dispatch:
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say Hello
+        run: echo "Hello, World!"
+      
+      - name: Show Date
+        run: date
+  good-bye:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say Good-Bye
+        run: echo "Good-Bye, World!"
+      
+      - name: Show Date
+        run: date
+  greetings:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Morning Greeting
+        run: |
+          echo "Good morning! 🌅"
+          echo "Intentionally failing greetings job"
+          exit 1
+      
+      - name: Afternoon Greeting
+        run: echo "Good afternoon! ☀️"
+      
+      - name: Evening Greeting
+        run: echo "Good evening! 🌙"
+
+  system-info:
+    runs-on: ubuntu-latest
+    needs: hello
+    steps:
+      - name: Show OS Info
+        run: uname -a
+      
+      - name: Show Disk Space
+        run: df -h
+      
+      - name: Show Current User
+        run: whoami
+  another-job:
+    runs-on: ubuntu-latest
+    needs: hello
+    steps:
+      - name: Show OS Info
+        run: uname -a
+      
+      - name: Show Disk Space
+        run: df -h
+      
+      - name: Show Current User
+        run: whoami
+  
+  final:
+    runs-on: ubuntu-latest
+    needs: [greetings, system-info, another-job, good-bye]
+    steps:
+      - name: Completion Message
+        run: echo "All jobs completed successfully! ✅"
