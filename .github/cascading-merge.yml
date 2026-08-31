@@ -41,7 +41,7 @@ verbose: true
 
 # Maximum number of cascade merge hops for a single originating PR (optional)
 # If omitted, cascade depth is unlimited
-maxMergeDepth: 2
+# maxMergeDepth: 2
 
 # --- How It Works ---
 #
