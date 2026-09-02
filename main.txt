@@ -4,3 +4,4 @@ Purpose: Testing cascading auto-merge functionality
 
 
 test2-2
+new test
