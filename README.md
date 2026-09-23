@@ -245,4 +245,4 @@ Release branches follow semantic versioning and date-based patterns:
 ## 🤝 Contributing
 
 This is a test repository for GitHub Actions. Modify the branch lists in the scripts to match your testing needs.
----
+
