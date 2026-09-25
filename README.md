@@ -266,4 +266,6 @@ Release branches follow semantic versioning and date-based patterns:
 
 This is a test repository for GitHub Actions. Modify the branch lists in the scripts to match your testing needs.
 
-target-20260925132657
+source-20260925132657
+
+resolved-source-20260925132657
